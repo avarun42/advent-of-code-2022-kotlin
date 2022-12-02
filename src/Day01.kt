@@ -1,14 +1,6 @@
-fun main() {
-    fun calculateCalorieSums(input: List<String>): List<Int> {
-        return input.fold(listOf(0)) { acc, s ->
-            if (s.isEmpty()) {
-                acc + 0
-            } else {
-                acc.dropLast(1) + (acc.last() + s.toInt())
-            }
-        }
-    }
+import day01.calculateCalorieSums
 
+fun main() {
     fun part1(input: List<String>): Int {
         return calculateCalorieSums(input).max()
     }
