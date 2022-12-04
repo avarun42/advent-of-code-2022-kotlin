@@ -3,22 +3,18 @@ import day03.Rucksack
 import day03.sharedItem
 
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input
-            .asSequence()
+    fun List<String>.toRucksacks(): Sequence<Rucksack> {
+        return this.asSequence()
             .map { rucksackItems -> rucksackItems.map { Item.fromChar(it) } }
             .map { Rucksack(it) }
-            .sumOf { it.sharedItem.priority }
+    }
+
+    fun part1(input: List<String>): Int {
+        return input.toRucksacks().sumOf { it.sharedItem.priority }
     }
 
     fun part2(input: List<String>): Int {
-        return input
-            .asSequence()
-            .map { rucksackItems -> rucksackItems.map { Item.fromChar(it) } }
-            .map { Rucksack(it) }
-            .chunked(3)
-            .map { it.sharedItem() }
-            .sumOf { it.priority }
+        return input.toRucksacks().chunked(3).map { it.sharedItem() }.sumOf { it.priority }
     }
 
     // test if implementation meets criteria from the description, like:

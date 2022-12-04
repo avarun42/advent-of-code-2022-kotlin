@@ -2,11 +2,11 @@ import day02.Round
 
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.map { it.split(" ") }.map { Round(it) }.sumOf { it.playerScore() }
+        return input.splitEach(" ").map { Round(it) }.sumOf { it.playerScore() }
     }
 
     fun part2(input: List<String>): Int {
-        return input.map { it.split(" ") }.map { Round.fromOutcome(it) }.sumOf { it.playerScore() }
+        return input.splitEach(" ").map { Round.fromOutcome(it) }.sumOf { it.playerScore() }
     }
 
     // test if implementation meets criteria from the description, like:

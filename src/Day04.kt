@@ -1,16 +1,20 @@
 import day04.SectionAssignment
 
 fun main() {
+    fun List<String>.toSectionAssignmentPairs(): List<Pair<SectionAssignment, SectionAssignment>> {
+        return this.splitEach(",").map { elfPair ->
+            elfPair.splitEach("-").map { SectionAssignment(it) }.toPair()
+        }
+    }
+
     fun part1(input: List<String>): Int {
-        return input
-            .map { elfPair -> elfPair.split(",").map { SectionAssignment(it.split("-")) }.toPair() }
-            .count { (elf1, elf2) -> elf1.contains(elf2) || elf2.contains(elf1) }
+        return input.toSectionAssignmentPairs().count { (elf1, elf2) ->
+            elf1.contains(elf2) || elf2.contains(elf1)
+        }
     }
 
     fun part2(input: List<String>): Int {
-        return input
-            .map { elfPair -> elfPair.split(",").map { SectionAssignment(it.split("-")) }.toPair() }
-            .count { (elf1, elf2) -> elf1.overlaps(elf2) || elf2.overlaps(elf1) }
+        return input.toSectionAssignmentPairs().count { (elf1, elf2) -> elf1.overlaps(elf2) }
     }
 
     // test if implementation meets criteria from the description, like:
