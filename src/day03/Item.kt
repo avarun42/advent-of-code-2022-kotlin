@@ -1,6 +1,6 @@
 package day03
 
-data class Item(val priority: Int, val name: Char) {
+data class Item(val priority: Int, val type: Char) {
     companion object {
         fun fromChar(char: Char): Item {
             return Item(
