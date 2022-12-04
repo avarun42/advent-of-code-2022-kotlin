@@ -14,3 +14,12 @@ fun readInput(name: String) = File("src", "$name.txt")
 fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
     .toString(16)
     .padStart(32, '0')
+
+/**
+ * Converts a List of length 2 to a Pair.
+ */
+fun <T> List<T>.toPair(): Pair<T, T> {
+    require (this.size == 2) { "List is not of length 2!" }
+    val (a, b) = this
+    return Pair(a, b)
+}
